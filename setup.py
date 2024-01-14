@@ -6,7 +6,7 @@ except(IOError, ImportError):
     long_description = open('README.md').read()
 setup(
     name='django-ticket',
-    version='2.1.0',
+    version='2.1.1',
     description='A ticket application for django project',
     long_description=long_description,
     long_description_content_type="text/markdown",
