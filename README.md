@@ -36,31 +36,45 @@ Note that and you can do all this operations from admin to a user
 
 ### .../create_ticket/
 Create a ticket from user to admin and add a new message:
-method: post
-required keywords :  ("title","section","priority","message")
+
+method: ```post```
+
+required keywords :  ```("title","section","priority","message")```
 
 ### .../add_message/
 Add message to a ticket :
-method: post
-required keywords : ("ticket","message")
+
+method: ```post```
+
+required keywords : ```("ticket","message")```
+
 Note: ticket means ticket's id
 
 ### .../close/
 Close ticket.
-method: patch
-required keywords : ("ticket",)
+
+method: ```patch```
+
+required keywords : ```("ticket",)```
+
 Note: ticket means ticket's id
 
 ### .../seen/
 Change ticket to seen state from user
-method: patch
-required keywords : ("ticket",)
+
+method: ```patch```
+
+required keywords : ```("ticket",)```
+
 Note: ticket means ticket's id
 
 ### .../get_my_tickets/
 Get all tickets of user as a list
-method: get
-required keywords : just must to be authorized.
+
+method: ```get```
+
+required keywords : ```just must to be authorized.```
+
 
 ## A little more Professional
 You can filter and have not seen tickets in admin panel:
