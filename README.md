@@ -3,7 +3,7 @@ Ticket application for django project
 
 ### 1. install package
 ```
-    pip install django-ticket
+pip install django-ticket
 ```
 
 ### 2. add this application in settings.INSTALLED_APPS :

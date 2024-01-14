@@ -12,7 +12,7 @@ setup(
     long_description_content_type="text/markdown",
     author='Hossein Sayyedmousavi',
     author_email='Hossein.Sayyedmousavi@gmail.com',
-    packages=['dbbackup_admin'],
+    packages=['ticket'],
     install_requires=[
                             'django',
                       ],
@@ -42,7 +42,6 @@ setup(
         "Programming Language :: Python :: 3.10",
         "Topic :: Database",
         "Topic :: System :: Archiving",
-        "Topic :: System :: Archiving :: Ticket",
         "Topic :: System :: Archiving :: Compression",
     ],
 )
