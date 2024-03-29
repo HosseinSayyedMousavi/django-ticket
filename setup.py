@@ -1,21 +1,25 @@
 from setuptools import setup
+
 try:
     import pypandoc
-    long_description = pypandoc.convert_file('README.md', 'rst')
-except(IOError, ImportError):
-    long_description = open('README.md').read()
+
+    long_description = pypandoc.convert_file("README.md", "rst")
+except (IOError, ImportError):
+    long_description = open("README.md").read()
 setup(
-    name='django-ticket',
-    version='2.1.1',
-    description='A ticket application for django project',
+    name="django-ticket",
+    version="2.1.1",
+    description="A ticket application for django project",
     long_description=long_description,
     long_description_content_type="text/markdown",
-    author='Hossein Sayyedmousavi',
-    author_email='Hossein.Sayyedmousavi@gmail.com',
-    packages=['ticket'],
+    maintainer="Hossein Sayyedmousavi",
+    maintainer_email="Hossein.Sayyedmousavi@gmail.com",
+    author="Abbas Ebadian",
+    author_email="AbbasEbadian@gmail.com",
+    packages=["ticket"],
     install_requires=[
-                            'django',
-                      ],
+        "django",
+    ],
     url="https://github.com/HosseinSayyedMousavi",
     keywords=[
         "django",
