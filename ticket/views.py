@@ -2,6 +2,7 @@ from django.contrib import messages
 from django.contrib.auth import get_user_model
 from rest_framework import generics, status, permissions
 from rest_framework.response import Response
+from django.utils.translation import gettext as _
 
 from .models import Ticket, TicketMessage
 from .serializers import TicketSerializer, CreateTicketSerializer, AddMessageSerializer, SeeCloseTicketSerializer, \
@@ -25,11 +26,11 @@ class CreateTicketAPIView(generics.GenericAPIView):
         ticket = Ticket.objects.create(**serializer.validated_data)
         ticket.ticketmessage_set.create(**message)
 
-        return Response({"message": "تیکت با موفقیت ثبت شد."}, status=status.HTTP_201_CREATED)
+        return Response(_("Ticket created successfully."), status=status.HTTP_201_CREATED)
 
 
 class AddMessageAPIView(generics.GenericAPIView):
-    permission_classes = [permissions.IsAuthenticated]
+    permission_classes = [permissions.IsAuthenticated, ]
     serializer_class = AddMessageAPIViewSerializer
 
     def post(self, request):
@@ -41,7 +42,7 @@ class AddMessageAPIView(generics.GenericAPIView):
 
         TicketMessage.objects.create(**serializer.validated_data)
 
-        return Response({"error": 0, "message": "تیکت با موفقیت ثبت شد.", "type": "success"})
+        return Response({"error": 0, "message": _("Ticket message submitted successfully"), "type": "success"})
 
 
 class CloseTicketAPIView(generics.GenericAPIView):
@@ -56,8 +57,8 @@ class CloseTicketAPIView(generics.GenericAPIView):
         ticket = serializer.validated_data["ticket"]
         ticket.status = "closed"
         ticket.save()
-        messages.add_message(request, messages.SUCCESS, "بسته شد")
-        return Response({"message": "بسته شد"})
+        messages.add_message(request, messages.SUCCESS, "Ticket Closed")
+        return Response({"message": _("Ticket Closed")})
 
 
 class SeeTicketAPIView(generics.GenericAPIView):
@@ -73,7 +74,7 @@ class SeeTicketAPIView(generics.GenericAPIView):
         ticket.seen_by_user = True
         ticket.save()
 
-        return Response({"message": "رویت شد"})
+        return Response({"message": _("Ticket seen by user")})
 
 
 class TicketListAPIView(generics.ListAPIView):
