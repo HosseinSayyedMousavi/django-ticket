@@ -135,18 +135,6 @@ Let's enjoy!
 
 # Changelog
 
-### Added
-- New features or enhancements that are planned or in progress.
-
-### Changed
-- Changes made to existing features or functionality.
-
-### Deprecated
-- Features that are still available but are planned for removal in future releases.
-
-### Fixed
-- Bug fixes or issues that have been resolved.
-
 ## [Version 3.1.1] - 2024-10-29
 ### Added
 - `soft_delete` attribute ticket and messages.
@@ -159,9 +147,6 @@ Let's enjoy!
 
 ### Deprecated
 - See ticket with an endpoint. `seen_by_user` by get ticket in detail
-
-### Removed
-- Features removed in this version.
 
 ### Fixed
 - `seen_by_admin` switches to True when open ticket object in admin panel

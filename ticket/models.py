@@ -14,47 +14,47 @@ User = get_user_model()
 class TicketOptions(Enum):
     # status
     PENDING = "pending"
-    PENDING_LABEL = "Pending"
+    PENDING_LABEL = _("Pending")
     ANSWERED = "answered"
-    ANSWERED_LABEL = "Answered"
+    ANSWERED_LABEL = _("Answered")
     CLOSED = "closed"
-    CLOSED_LABEL = "Closed"
+    CLOSED_LABEL = _("Closed")
 
     # section
     MANAGEMENT = "management"
-    MANAGEMENT_LABEL = "Management"
+    MANAGEMENT_LABEL = _("Management")
     FINANCES = "finances"
-    FINANCES_LABEL = "Finances"
+    FINANCES_LABEL = _("Finances")
     SUPPORT = "support"
-    SUPPORT_LABEL = "Support"
+    SUPPORT_LABEL = _("Support")
 
     # priority
     LOW = "low"
-    LOW_LABEL = "Low"
+    LOW_LABEL = _("Low")
     MEDIUM = "medium"
-    MEDIUM_LABEL = "Medium"
+    MEDIUM_LABEL = _("Medium")
     HIGH = "high"
-    HIGH_LABEL = "High"
+    HIGH_LABEL = _("High")
 
 
 class Ticket(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     title = models.CharField(max_length=255)
     status = models.CharField(max_length=255, choices=[
-        (TicketOptions.PENDING, _(TicketOptions.PENDING_LABEL)),
-        (TicketOptions.ANSWERED, _(TicketOptions.ANSWERED_LABEL)),
-        (TicketOptions.CLOSED, _(TicketOptions.CLOSED_LABEL))
+        (TicketOptions.PENDING, TicketOptions.PENDING_LABEL),
+        (TicketOptions.ANSWERED, TicketOptions.ANSWERED_LABEL),
+        (TicketOptions.CLOSED, TicketOptions.CLOSED_LABEL)
     ], default=TicketOptions.PENDING)
     section = models.CharField(max_length=128, choices=[
-        (TicketOptions.MANAGEMENT, _(TicketOptions.MANAGEMENT_LABEL)),
-        (TicketOptions.FINANCES, _(TicketOptions.FINANCES_LABEL)),
-        (TicketOptions.SUPPORT, _(TicketOptions.SUPPORT_LABEL))
+        (TicketOptions.MANAGEMENT, TicketOptions.MANAGEMENT_LABEL),
+        (TicketOptions.FINANCES, TicketOptions.FINANCES_LABEL),
+        (TicketOptions.SUPPORT, TicketOptions.SUPPORT_LABEL)
     ], default=TicketOptions.SUPPORT)
 
     priority = models.CharField(max_length=128, choices=[
-        (TicketOptions.LOW, _(TicketOptions.LOW_LABEL)),
-        (TicketOptions.MEDIUM, _(TicketOptions.MEDIUM_LABEL)),
-        (TicketOptions.HIGH_LABEL, _(TicketOptions.HIGH_LABEL))
+        (TicketOptions.LOW, TicketOptions.LOW_LABEL),
+        (TicketOptions.MEDIUM, TicketOptions.MEDIUM_LABEL),
+        (TicketOptions.HIGH_LABEL, TicketOptions.HIGH_LABEL)
     ], default=TicketOptions.LOW)
 
     seen_by_user = models.BooleanField(default=False, verbose_name=_("Seen by user"))
