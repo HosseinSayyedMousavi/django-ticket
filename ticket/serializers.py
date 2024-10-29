@@ -72,8 +72,21 @@ class TicketMessageSerializer(serializers.ModelSerializer):
 
 
 class TicketSerializer(serializers.ModelSerializer):
-    ticketmessage_set = TicketMessageSerializer(many=True, read_only=True)
-
-    class Meta:
+    ticket_messages = serializers.SerializerMethodField(read_only=True)
+    class Meta: 
         model = Ticket
-        fields = "__all__"
+        fields = '__all__'
+    
+    def get_ticket_messages(self, obj):
+        messages = obj.ticketmessage_set.filter(soft_delete=False).order_by('id')
+        return TicketMessageSerializer(messages, many=True, read_only=True).data
+    
+    def to_representation(self, instance):
+        rep = super().to_representation(instance)
+        for message in rep['ticket_messages']:
+            if message['user'] == rep['user']:
+                message['is_admin'] = False
+            else:
+                message['is_admin'] = True
+        return rep
+

@@ -62,7 +62,7 @@ class Ticket(models.Model):
 
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
-
+    soft_delete = models.BooleanField(default = False)
     def __str__(self):
         return f"{self.id}:{self.title}"
 
@@ -77,9 +77,11 @@ class TicketMessage(models.Model):
     message = models.TextField(null=False, blank=False)
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
-
+    viewed = models.DateTimeField(null=True)
+    viewer = models.ForeignKey(User, on_delete=models.CASCADE, null=True , related_name='admin_viewer')
+    soft_delete = models.BooleanField(default=False)
     def __str__(self):
-        return f"{self.id}:{self.message[:20]}"
+        return ""
 
     class Meta:
         verbose_name = _("Ticket Message")

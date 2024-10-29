@@ -82,5 +82,5 @@ class TicketListAPIView(generics.ListAPIView):
     serializer_class = TicketSerializer
 
     def get_queryset(self):
-        queryset = Ticket.objects.filter(user=self.request.user)
+        queryset = Ticket.objects.filter(user=self.request.user).exclude(soft_delete=True)
         return queryset
