@@ -66,24 +66,6 @@ class Ticket(models.Model):
     def __str__(self):
         return f"{self.id}:{self.title}"
 
-    def save(self, *args, **kwargs):
-
-        if self.pk:
-            last_message = self.ticketmessage_set.order_by("-id").first()
-        else:
-            last_message = None
-        if self.status != TicketOptions.CLOSED and last_message:
-            if last_message.user and last_message.user.is_superuser:
-                self.status = TicketOptions.ANSWERED
-                self.seen_by_admin = True
-                now = datetime.datetime.now(timezone.utc)
-                if (now - last_message.created).seconds < 5:
-                    self.seen_by_user = False
-            else:
-                self.status = TicketOptions.PENDING
-
-        super(Ticket, self).save(*args, **kwargs)
-
     class Meta:
         verbose_name = _("Ticket")
         verbose_name_plural = _("Tickets")
@@ -102,14 +84,3 @@ class TicketMessage(models.Model):
     class Meta:
         verbose_name = _("Ticket Message")
         verbose_name_plural = _("Ticket Messages")
-
-
-@receiver(post_save, sender=TicketMessage)
-def after_create(sender, instance, created, **kwargs):
-    if created and instance.ticket and instance.ticket.status != TicketOptions.CLOSED:
-        if instance.user and (instance.user.is_superuser or instance.user.is_staff):
-            instance.ticket.status = TicketOptions.ANSWERED
-        else:
-            instance.ticket.status = TicketOptions.PENDING
-
-    instance.ticket.save()

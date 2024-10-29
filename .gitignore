@@ -152,3 +152,4 @@ cython_debug/
 #.idea/
 django_dbbackup_admin.egg-info/
 dist/
+ignore*
