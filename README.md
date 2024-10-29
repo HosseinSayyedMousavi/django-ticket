@@ -1,6 +1,13 @@
 # django-ticket
 Ticket application for django project
 
+## Repository
+
+You can find the source code and contribute to the project at the following link:
+
+[GitHub Repository](https://github.com/HosseinSayyedMousavi/django-ticket)
+
+## Installation
 ### 1. install package
 ```
 pip install django-ticket
@@ -112,5 +119,10 @@ Finally your application is complete to use:
 
 ![Screenshot from 2024-01-14 10-19-39](https://github.com/HosseinSayyedMousavi/django-ticket/assets/104124540/c68600d9-1e9f-4f5a-9a7a-8ba4644a8bec)
 
-
 Thanks for attention
+## Contributors
+
+- [Abbas Ebadian](https://github.com/AbbasEbadian) - Founder of the project
+- [Hossein Sayyedmousavi](https://github.com/HosseinSayyedMousavi) - Primary Developer and Contributorand Contributor
+
+

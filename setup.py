@@ -6,22 +6,18 @@ try:
     long_description = pypandoc.convert_file("README.md", "rst")
 except (IOError, ImportError):
     long_description = open("README.md").read()
+
 setup(
+    url="https://github.com/HosseinSayyedMousavi/django-ticket",
     name="django-ticket",
     version="2.1.2",
-    description="A ticket application for django project",
+    description="A ticket application for Django projects",
     long_description=long_description,
     long_description_content_type="text/markdown",
     maintainer="Hossein Sayyedmousavi",
     maintainer_email="Hossein.Sayyedmousavi@gmail.com",
     author="Abbas Ebadian",
     author_email="AbbasEbadiann@gmail.com",
-    packages=["ticket"],
-    install_requires=[
-        "django",
-        "djangorestframework"
-    ],
-    url="https://github.com/HosseinSayyedMousavi",
     keywords=[
         "django",
         "database",
@@ -49,4 +45,9 @@ setup(
         "Topic :: System :: Archiving",
         "Topic :: System :: Archiving :: Compression",
     ],
+    packages=["ticket"],
+    install_requires=[
+        "django",
+        "djangorestframework"
+    ]
 )
