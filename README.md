@@ -7,6 +7,12 @@ You can find the source code and contribute to the project at the following link
 
 [GitHub Repository](https://github.com/HosseinSayyedMousavi/django-ticket)
 
+## Contributors
+
+- [Abbas Ebadian](https://github.com/AbbasEbadian) - Founder of the project
+- [Hossein Sayyedmousavi](https://github.com/HosseinSayyedMousavi) - Primary Developer and Contributorand Contributor
+
+
 ## Installation
 ### 1. install package
 ```
@@ -41,46 +47,48 @@ when you pass this missions you will see this in your admin panel:
 You can create a Ticket from admin panel for a user to  admin.
 Note that and you can do all this operations from admin to a user
 
-### .../create_ticket/
+### /ticket/
 Create a ticket from user to admin and add a new message:
 
-method: ```post```
+method: ```POST```
 
 required keywords :  ```("title","section","priority","message")```
 
-### .../add_message/
-Add message to a ticket :
-
-method: ```post```
-
-required keywords : ```("ticket","message")```
-
-Note: ticket means ticket's id
-
-### .../close/
-Close ticket.
-
-method: ```patch```
-
-required keywords : ```("ticket",)```
-
-Note: ticket means ticket's id
-
-### .../seen/
-Change ticket to seen state from user
-
-method: ```patch```
-
-required keywords : ```("ticket",)```
-
-Note: ticket means ticket's id
-
-### .../get_my_tickets/
+### /ticket/
 Get all tickets of user as a list
 
-method: ```get```
+method: ```GET```
 
 required keywords : ```just must to be authorized.```
+
+
+### /ticket/id/
+Add message to a ticket with its id :
+
+method: ```POST```
+
+required keywords : ```("message",)```
+
+Note: id means ticket's id
+
+### /ticket/id/
+Get a specific ticket by detail with its messages by it's id and Change ticket to seen state from user
+
+method: ```GET```
+
+required keywords :  ```just must to be authorized.```
+
+Note: id means ticket's id
+
+### /ticket/id/
+Close ticket.
+
+method: ```PATCH```
+
+required keywords :  ```just must to be authorized.```
+
+Note: id means ticket's id
+
 
 
 ## A little more Professional
@@ -91,9 +99,13 @@ You can filter and have not seen tickets in admin panel:
 ```
 TEMPLATES = [
     {
+        # ...
+        'DIRS': [
             # ...
-        'DIRS': ['ticket/templates'],
+            'ticket/templates'
             # ...
+                    ],
+        # ...
     }
 ]
 ```
@@ -112,17 +124,47 @@ TEMPLATES = [
             # ...
     }
 ]
-    # ...
 ```
 Finally your application is complete to use:
 
 
 ![Screenshot from 2024-01-14 10-19-39](https://github.com/HosseinSayyedMousavi/django-ticket/assets/104124540/c68600d9-1e9f-4f5a-9a7a-8ba4644a8bec)
 
-Thanks for attention
-## Contributors
+Let's enjoy!
 
-- [Abbas Ebadian](https://github.com/AbbasEbadian) - Founder of the project
-- [Hossein Sayyedmousavi](https://github.com/HosseinSayyedMousavi) - Primary Developer and Contributorand Contributor
+
+# Changelog
+
+### Added
+- New features or enhancements that are planned or in progress.
+
+### Changed
+- Changes made to existing features or functionality.
+
+### Deprecated
+- Features that are still available but are planned for removal in future releases.
+
+### Fixed
+- Bug fixes or issues that have been resolved.
+
+## [Version 3.1.1] - 2024-10-29
+### Added
+- `soft_delete` attribute ticket and messages.
+- `viewed` attribute view time of a message.
+- `viewer` attribute viewer user of a message.
+- `swagger` api docs and schemas.
+
+### Changed
+- Make urls `RESTFUL`. just one address -> /ticket/
+
+### Deprecated
+- See ticket with an endpoint. `seen_by_user` by get ticket in detail
+
+### Removed
+- Features removed in this version.
+
+### Fixed
+- `seen_by_admin` switches to True when open ticket object in admin panel
+
 
 
