@@ -10,7 +10,7 @@ except (IOError, ImportError):
 setup(
     url="https://github.com/HosseinSayyedMousavi/django-ticket",
     name="django-ticket",
-    version="2.1.2",
+    version="3.1.1",
     description="A ticket application for Django projects",
     long_description=long_description,
     long_description_content_type="text/markdown",
@@ -48,6 +48,7 @@ setup(
     packages=["ticket"],
     install_requires=[
         "django",
-        "djangorestframework"
+        "djangorestframework",
+        "drf-spectacular"
     ]
 )

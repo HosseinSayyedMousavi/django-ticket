@@ -1,8 +1,6 @@
 import difflib
-
 from django.utils.translation import gettext as _
 from rest_framework import serializers, exceptions
-
 from .models import Ticket, TicketMessage, TicketOptions
 
 
@@ -37,6 +35,7 @@ class AddMessageSerializer(serializers.ModelSerializer):
         fields = ("user", "ticket", "message")
 
     def validate(self, attrs):
+        valid = super().validate(attrs)
         ticket = attrs.get("ticket")
         user = attrs.get("user")
         message = attrs.get("message", None)
@@ -52,17 +51,13 @@ class AddMessageSerializer(serializers.ModelSerializer):
             raise exceptions.ValidationError(
                 {"message": _("Message with similarity of 85% has already been sent.")})
 
-        return attrs
+        return valid
 
 
-class AddMessageAPIViewSerializer(AddMessageSerializer):
-    class Meta(AddMessageSerializer.Meta):
-        fields = ("ticket", "message")
-
-
-class SeeCloseTicketSerializer(serializers.ModelSerializer):
-    class Meta(AddMessageSerializer.Meta):
-        fields = ("ticket",)
+class TicketSerializer(serializers.ModelSerializer):
+    class Meta: 
+        model = Ticket
+        fields = '__all__'
 
 
 class TicketMessageSerializer(serializers.ModelSerializer):
@@ -71,7 +66,7 @@ class TicketMessageSerializer(serializers.ModelSerializer):
         fields = "__all__"
 
 
-class TicketSerializer(serializers.ModelSerializer):
+class TicketDetailSerializer(serializers.ModelSerializer):
     ticket_messages = serializers.SerializerMethodField(read_only=True)
     class Meta: 
         model = Ticket
@@ -89,4 +84,5 @@ class TicketSerializer(serializers.ModelSerializer):
             else:
                 message['is_admin'] = True
         return rep
+
 
