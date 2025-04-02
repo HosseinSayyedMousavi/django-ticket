@@ -40,23 +40,34 @@ class TicketOptions(Enum):
 class Ticket(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     title = models.CharField(max_length=255)
-    status = models.CharField(max_length=255, choices=[
-        (TicketOptions.PENDING, TicketOptions.PENDING_LABEL),
-        (TicketOptions.ANSWERED, TicketOptions.ANSWERED_LABEL),
-        (TicketOptions.CLOSED, TicketOptions.CLOSED_LABEL)
-    ], default=TicketOptions.PENDING)
-    section = models.CharField(max_length=128, choices=[
-        (TicketOptions.MANAGEMENT, TicketOptions.MANAGEMENT_LABEL),
-        (TicketOptions.FINANCES, TicketOptions.FINANCES_LABEL),
-        (TicketOptions.SUPPORT, TicketOptions.SUPPORT_LABEL)
-    ], default=TicketOptions.SUPPORT)
+    status = models.CharField(
+        max_length=255,
+        choices=[
+            (TicketOptions.PENDING.value, TicketOptions.PENDING_LABEL.value),
+            (TicketOptions.ANSWERED.value, TicketOptions.ANSWERED_LABEL.value),
+            (TicketOptions.CLOSED.value, TicketOptions.CLOSED_LABEL.value),
+        ],
+        default=TicketOptions.PENDING,
+    )
+    section = models.CharField(
+        max_length=128,
+        choices=[
+            (TicketOptions.MANAGEMENT.value, TicketOptions.MANAGEMENT_LABEL.value),
+            (TicketOptions.FINANCES.value, TicketOptions.FINANCES_LABEL.value),
+            (TicketOptions.SUPPORT.value, TicketOptions.SUPPORT_LABEL.value),
+        ],
+        default=TicketOptions.SUPPORT.value,
+    )
 
-    priority = models.CharField(max_length=128, choices=[
-        (TicketOptions.LOW, TicketOptions.LOW_LABEL),
-        (TicketOptions.MEDIUM, TicketOptions.MEDIUM_LABEL),
-        (TicketOptions.HIGH_LABEL, TicketOptions.HIGH_LABEL)
-    ], default=TicketOptions.LOW)
-
+    priority = models.CharField(
+        max_length=128,
+        choices=[
+            (TicketOptions.LOW.value, TicketOptions.LOW_LABEL.value),
+            (TicketOptions.MEDIUM.value, TicketOptions.MEDIUM_LABEL.value),
+            (TicketOptions.HIGH_LABEL.value, TicketOptions.HIGH_LABEL.value),
+        ],
+        default=TicketOptions.LOW.value,
+    )
     seen_by_user = models.BooleanField(default=False, verbose_name=_("Seen by user"))
     seen_by_admin = models.BooleanField(default=False, verbose_name=_("Seen by admin"))
 
